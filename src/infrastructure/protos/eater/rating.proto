@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+option go_package = "./eater";
+
+message RestaurantRating {
+  string id = 1 [json_name = "id"];
+  string eater_id = 2 [json_name = "eater_id"];
+  string restaurant_id = 3 [json_name = "restaurant_id"];
+  int32 rating = 4 [json_name = "rating"];
+  string comment = 5 [json_name = "comment"];
+  string created_at = 6 [json_name = "created_at"];
+  string updated_at = 7 [json_name = "updated_at"];
+}
+message DeliveryRating {
+  string id = 1 [json_name = "id"];
+  string eater_id = 2 [json_name = "eater_id"];
+  string order_id = 3 [json_name = "order_id"];
+  int32 rating = 4 [json_name = "rating"];
+  string comment = 5 [json_name = "comment"];
+  string created_at = 6 [json_name = "created_at"];
+  string updated_at = 7 [json_name = "updated_at"];
+}
+message RateRestaurantRequest {
+  string eater_id = 1 [json_name = "eater_id"];
+  string restaurant_id = 2 [json_name = "restaurant_id"];
+  int32 rating = 3 [json_name = "rating"];
+  string comment = 4 [json_name = "comment"];
+}
+message RateRestaurantResponse {
+  RestaurantRating rating = 1 [json_name = "rating"];
+}
+message UpdateRestaurantRatingRequest {
+  string rating_id = 1 [json_name = "rating_id"];
+  int32 rating = 2 [json_name = "rating"];
+  string comment = 3 [json_name = "comment"];
+}
+message UpdateRestaurantRatingResponse {
+  RestaurantRating rating = 1 [json_name = "rating"];
+}
+message ListRestaurantRatingByEaterRequest {
+  string eater_id = 1 [json_name = "eater_id"];
+}
+message ListRestaurantRatingByEaterResponse {
+  repeated RestaurantRating ratings = 1 [json_name = "ratings"];
+}
+message RateDeliveryRequest {
+  string eater_id = 1 [json_name = "eater_id"];
+  string order_id = 2 [json_name = "order_id"];
+  int32 rating = 3 [json_name = "rating"];
+  string comment = 4 [json_name = "comment"];
+}
+message RateDeliveryResponse {
+  DeliveryRating rating = 1 [json_name = "rating"];
+}
+message UpdateDeliveryRatingRequest {
+  string rating_id = 1 [json_name = "rating_id"];
+  int32 rating = 2 [json_name = "rating"];
+  string comment = 3 [json_name = "comment"];
+}
+message UpdateDeliveryRatingResponse {
+  DeliveryRating rating = 1 [json_name = "rating"];
+}
+message ListDeliveryRatingByEaterRequest {
+  string eater_id = 1 [json_name = "eater_id"];
+}
+message ListDeliveryRatingByEaterResponse {
+  repeated DeliveryRating ratings = 1 [json_name = "ratings"];
+}
+message GetDeliveryRatingByOrderRequest {
+  string order_id = 1;
+}
+message GetDeliveryRatingByOrderResponse {
+  DeliveryRating rating = 1 [json_name = "rating"];
+}

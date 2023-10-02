@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option go_package = "./eater";
+
+message EaterProfile {
+  string eater_id = 1 [json_name = "eater_id"];
+  string phone_number = 2 [json_name = "phone_number"];
+  string name = 3 [json_name = "name"];
+  bool is_phone_number_confirmed = 4 [json_name = "is_phone_number_confirmed"];
+  string created_at = 5 [json_name = "created_at"];
+  string updated_at = 6 [json_name = "updated_at"];
+}
+
+message SignupEaterRequest {
+string phone_number = 1;
+}
+message SignupEaterResponse {
+  string eater_id = 1 [json_name = "eater_id"];
+}
+message ConfirmSmsCodeRequest {
+  string eater_id = 1;
+  string sms_code = 2;
+}
+message ConfirmSmsCodeResponse {
+  EaterProfile profile = 1 [json_name = "profile"];
+  string token = 2 [json_name = "token"];
+}
+message UpdateEaterProfileRequest {
+  string eater_id = 1 [json_name = "eater_id"];
+  string name = 2 [json_name = "name"];
+  string image_url = 3 [json_name = "image_url"];
+}
+message UpdateEaterProfileResponse {
+  EaterProfile profile = 1 [json_name = "profile"];
+}
+message GetEaterProfileRequest {
+  string eater_id = 1;
+}
+message GetEaterProfileResponse {
+  EaterProfile profile = 1 [json_name = "profile"];
+}

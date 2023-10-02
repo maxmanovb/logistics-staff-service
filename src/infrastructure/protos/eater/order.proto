@@ -1,0 +1,101 @@
+
+syntax = "proto3";
+
+option go_package = "./eater";
+
+message RestaurantInfo {
+  string entity_id = 1 [json_name = "entity_id"];
+  string restaurant_id = 2 [json_name = "restaurant_id"];
+  string name = 3 [json_name = "name"];
+  string image_url = 4 [json_name = "image_url"];
+}
+message AddressInfo {
+  string id = 1 [json_name = "id"];
+  string name = 2 [json_name = "name"];
+  double longitude = 3 [json_name = "longitude"];
+  double latitude = 4 [json_name = "latitude"];
+}
+message DeliveryInfo {
+  string address_id = 1 [json_name = "address_id"];
+  AddressInfo address = 2 [json_name = "address"];
+  string time = 3 [json_name = "time"];
+  string notes = 4 [json_name = "notes"];
+}
+message PaymentInfo {
+  string method = 1 [json_name = "method"];
+  string card_id = 2 [json_name = "card_id"];
+  int32 delivery_price = 3 [json_name = "delivery_price"];
+  int32 total_price = 4 [json_name = "total_price"];
+}
+message CartProduct {
+  string id = 1 [json_name = "id"];
+  string name = 2 [json_name = "name"];
+  int32 price = 3 [json_name = "price"];
+}
+message CartItem {
+  CartProduct product = 1 [json_name = "product"];
+  int32 quantity = 2 [json_name = "quantity"];
+}
+message Cart {
+  string instruction = 1 [json_name = "instruction"];
+  RestaurantInfo restaurant = 2 [json_name = "restaurant"];
+  DeliveryInfo delivery = 3 [json_name = "delivery"];
+  PaymentInfo payment = 4 [json_name = "payment"];
+  repeated CartItem items = 5 [json_name = "items"];
+}
+message OrderItem {
+  string id = 1 [json_name = "id"];
+  string product_id = 2 [json_name = "product_id"];
+  string name = 3 [json_name = "name"];
+  int32 quantity = 4 [json_name = "quantity"];
+  int32 price = 5 [json_name = "price"];
+  int32 total_price = 6 [json_name = "total_price"];
+  string created_at = 7 [json_name = "created_at"];
+}
+message Order {
+  string id = 1 [json_name = "id"];
+  string eater_id = 2 [json_name = "eater_id"];
+  string instruction = 3 [json_name = "instruction"];
+  string entity_id = 4 [json_name = "entity_id"];
+  RestaurantInfo restaurant = 5 [json_name = "restaurant"];
+  DeliveryInfo delivery = 6 [json_name = "delivery"];
+  PaymentInfo payment = 7 [json_name = "payment"];
+  repeated OrderItem items = 8 [json_name = "items"];
+  string status = 9 [json_name = "status"];
+  string payment_status = 10 [json_name = "payment_status"];
+  string created_at = 11 [json_name = "created_at"];
+  string updated_at = 12 [json_name = "updated_at"];
+}
+message PlaceOrderRequest {
+  string eater_id = 1 [json_name = "eater_id"];
+  Cart cart = 2 [json_name = "cart"];
+}
+message PlaceOrderResponse {
+  Order order = 1 [json_name = "order"];
+}
+message UpdateOrderRequest {
+  Order order = 1 [json_name = "order"];
+}
+message UpdateOrderResponse {
+  Order order = 1 [json_name = "order"];
+}
+message GetOrderRequest {
+  string order_id = 1 [json_name = "order_id"];
+}
+message GetOrderResponse {
+  Order order = 1 [json_name = "order"];
+}
+message DeleteOrderRequest {
+  string order_id = 1 [json_name = "order_id"];
+}
+message DeleteOrderResponse {}
+
+message ListOrderByEaterRequest {
+  string eater_id = 1 [json_name = "eater_id"];
+  string sort = 2 [json_name = "sort"];
+  int32 page = 3 [json_name = "page"];
+  int32 page_size = 4 [json_name = "page_size"];
+}
+message ListOrderByEaterResponse {
+  repeated Order orders = 1 [json_name = "orders"];
+}

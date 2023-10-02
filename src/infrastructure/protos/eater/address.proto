@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option go_package = "./eater";
+
+message Location {
+  double longitude = 1 [json_name = "longitude"];
+  double latitude = 2 [json_name = "latitude"];
+}
+message Address {
+  string id = 1 [json_name = "id"];
+  string eater_id = 2 [json_name = "eater_id"];
+  string name = 3 [json_name = "name"];
+  Location location = 4 [json_name = "location"];
+  string created_at = 5 [json_name = "created_at"];
+  string updated_at = 6 [json_name = "updated_at"];
+}
+message AddAddressRequest {
+  string eater_id = 1;
+  string name = 2;
+  double longitude = 3;
+  double latitude = 4;
+}
+message AddAddressResponse {
+  Address address = 1 [json_name = "address"];
+}
+message UpdateAddressRequest {
+  string address_id = 1 [json_name = "address_id"];
+  string name = 2 [json_name = "name"];
+  double longitude = 3 [json_name = "longitude"];
+  double latitude = 4 [json_name = "latitude"];
+}
+
+message UpdateAddressResponse {
+  Address address = 1 [json_name = "address"];
+}
+message DeleteAddressRequest {
+  string address_id = 1;
+}
+message DeleteAddressResponse {}
+
+message GetAddressRequest {
+  string address_id = 1;
+}
+message GetAddressResponse {
+  Address address = 1 [json_name = "address"];
+}
+message ListAddressByEaterRequest {
+  string eater_id = 1;
+}
+message ListAddressByEaterResponse {
+  repeated Address addresses = 1 [json_name = "addresses"];
+}

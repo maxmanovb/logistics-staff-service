@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "./restaurant_support";
+
+message EaterInfo {
+    string name = 1 [json_name = "name"];
+    string image_url = 2 [json_name = "image_url"];
+}
+message RestaurantInfo {
+    string name = 1 [json_name = "name"];
+}
+message Rating {
+    string id = 1 [json_name = "id"];
+    string entity_id = 2 [json_name = "entity_id"];
+    string eater_id = 3 [json_name = "eater_id"];
+    RestaurantInfo restaurant = 4 [json_name = "restaurant"];
+    EaterInfo eater = 5 [json_name = "eater"];
+    int32 rating = 6 [json_name = "rating"];
+    string comment = 7 [json_name = "comment"];
+    string created_at = 8 [json_name = "created_at"];
+    string updated_at = 9 [json_name = "updated_at"];
+}
+message ListRatingRequest {
+    string entity_id = 1 [json_name = "entity_id"];
+    string sort = 2 [json_name = "sort"];
+    int32 page = 3 [json_name = "page"];
+    int32 page_size = 4 [json_name = "page_size"];
+}
+
+message ListRatingResponse {
+    repeated Rating ratings = 1 [json_name = "ratings"];
+}
+

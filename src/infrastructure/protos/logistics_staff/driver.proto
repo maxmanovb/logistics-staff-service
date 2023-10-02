@@ -1,0 +1,48 @@
+syntax = "proto3";
+option go_package = "./logistics_staff";
+message DriverProfile {
+string driver_id = 1 [json_name = "driver_id"];
+string name = 2 [json_name = "name"];
+string phone_number = 3 [json_name = "phone_number"];
+string image_url = 4 [json_name = "image_url"];
+bool active = 5 [json_name = "active"];
+string created_at = 6 [json_name = "created_at"];
+string updated_at = 7 [json_name = "updated_at"];
+}
+message RegisterDriverRequest {
+string phone_number = 1 [json_name = "phone_number"];
+string password = 2 [json_name = "password"];
+}
+message RegisterDriverResponse {
+string driver_id = 1 [json_name = "driver_id"];
+}
+message LoginDriverRequest {
+string phone_number = 1 [json_name = "phone_number"];
+string password = 2 [json_name = "password"];
+}
+message LoginDriverResponse {
+string driver_id = 1 [json_name = "driver_id"];
+}
+message ConfirmSmsCodeRequest {
+string driver_id = 1 [json_name = "driver_id"];
+
+string sms_code = 2 [json_name = "sms_code"];
+}
+message ConfirmSmsCodeResponse {
+DriverProfile profile = 1 [json_name = "profile"];
+string access_token = 2 [json_name = "access_token"];
+}
+message GetDriverProfileRequest {
+string driver_id = 1 [json_name = "driver_id"];
+}
+message GetDriverProfileResponse {
+DriverProfile profile = 1 [json_name = "profile"];
+}
+message UpdateDriverProfileRequest {
+string driver_id = 1 [json_name = "driver_id"];
+string name = 2 [json_name = "name"];
+string image_url = 3 [json_name = "image_url"];
+}
+message UpdateDriverProfileResponse {
+DriverProfile profile = 1 [json_name = "profile"];
+}

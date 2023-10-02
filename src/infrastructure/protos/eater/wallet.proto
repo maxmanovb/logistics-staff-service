@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = "./eater";
+
+message PaymentCardView {
+  string id = 1 [json_name = "id"];
+  string eater_id = 2 [json_name = "eater_id"];
+  string number = 3 [json_name = "number"];
+  bool is_verified = 4 [json_name = "is_verified"];
+  string created_at = 5 [json_name = "created_at"];
+}
+message AddPaymentCardRequest {
+  string eater_id = 1;
+  string card_number = 2;
+  string card_token = 3;
+}
+message AddPaymentCardResponse {
+  PaymentCardView card = 1 [json_name = "card"];
+}
+message DeletePaymentCardRequest {
+  string card_id = 1;
+}
+message DeletePaymentCardResponse {}
+
+message GetPaymentCardRequest {
+  string card_id = 1;
+}
+message GetPaymentCardResponse {
+  PaymentCardView card = 1 [json_name = "card"];
+}
+message ListPaymentCardByEaterRequest {
+  string eater_id = 1;
+}
+message ListPaymentCardByEaterResponse {
+  repeated PaymentCardView cards = 1 [json_name = "cards"];
+}

@@ -1,0 +1,38 @@
+syntax = "proto3";
+option go_package = "./eater";
+import "eater.proto";
+import "address.proto";
+import "wallet.proto";
+import "order.proto";
+import "rating.proto";
+service EaterService {
+  rpc SignupEater (SignupEaterRequest) returns (SignupEaterResponse);
+  rpc ConfirmSmsCode(ConfirmSmsCodeRequest) returns (ConfirmSmsCodeResponse);
+  rpc UpdateEaterProfile(UpdateEaterProfileRequest) returns (UpdateEaterProfileResponse);
+  rpc GetEaterProfile(GetEaterProfileRequest) returns (GetEaterProfileResponse);
+  // address
+  rpc AddAddress(AddAddressRequest) returns (AddAddressResponse);
+  rpc UpdateAddress(UpdateAddressRequest) returns (UpdateAddressResponse);
+  rpc DeleteAddress(DeleteAddressRequest) returns (DeleteAddressResponse);
+  rpc GetAddress(GetAddressRequest) returns (GetAddressResponse);
+  rpc ListAddressByEater(ListAddressByEaterRequest) returns (ListAddressByEaterResponse);
+  // wallet
+  rpc AddPaymentCard(AddPaymentCardRequest) returns (AddPaymentCardResponse);
+  rpc DeletePaymentCard(DeletePaymentCardRequest) returns (DeletePaymentCardResponse);
+  rpc GetPaymentCard(GetPaymentCardRequest) returns (GetPaymentCardResponse);
+  rpc ListPaymentCardByEater(ListPaymentCardByEaterRequest) returns (ListPaymentCardByEaterResponse);
+  // order
+  rpc PlaceOrder(PlaceOrderRequest) returns (PlaceOrderResponse);
+  rpc UpdateOrder(UpdateOrderRequest) returns (UpdateOrderResponse);
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+  rpc DeleteOrder(DeleteOrderRequest) returns (DeleteOrderResponse);
+  rpc ListOrderByEater(ListOrderByEaterRequest) returns (ListOrderByEaterResponse);
+  // rating
+  rpc RateRestaurant(RateRestaurantRequest) returns (RateRestaurantResponse);
+  rpc UpdateRestaurantRating(UpdateRestaurantRatingRequest) returns (UpdateRestaurantRatingResponse);
+  rpc ListRestaurantRatingByEater(ListRestaurantRatingByEaterRequest) returns (ListRestaurantRatingByEaterResponse);
+  rpc RateDelivery(RateDeliveryRequest) returns (RateDeliveryResponse);
+  rpc UpdateDeliveryRating(UpdateDeliveryRatingRequest) returns (UpdateDeliveryRatingResponse);
+  rpc ListDeliveryRatingByEater(ListDeliveryRatingByEaterRequest) returns (ListDeliveryRatingByEaterResponse);
+  rpc GetDeliveryRatingByOrder(GetDeliveryRatingByOrderRequest) returns (GetDeliveryRatingByOrderResponse);
+}

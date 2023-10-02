@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "./logistics_staff";
+import "driver.proto";
+service StaffService {
+rpc RegisterDriver (RegisterDriverRequest) returns (RegisterDriverResponse);
+rpc LoginDriver (LoginDriverRequest) returns (LoginDriverResponse);
+rpc ConfirmSmsCode(ConfirmSmsCodeRequest) returns (ConfirmSmsCodeResponse);
+rpc GetDriverProfile(GetDriverProfileRequest) returns (GetDriverProfileResponse);
+rpc UpdateDriverProfile(UpdateDriverProfileRequest) returns (UpdateDriverProfileResponse);
+}
